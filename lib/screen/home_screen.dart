@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_app_ui/screen/details_screen.dart';
 import 'package:plant_app_ui/screen/product.dart';
 import 'package:plant_app_ui/utils/colors.dart';
 
@@ -15,7 +16,7 @@ class HomeScreen extends StatelessWidget {
           Row(
             children: [
               sideBar(),
-              bodyParts(size),
+              bodyParts(size, context),
             ],
           ),
           const Positioned(
@@ -43,30 +44,50 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Container bodyParts(Size size) {
+  Container bodyParts(Size size, BuildContext context) {
     return Container(
       width: size.width * 0.7,
       color: Colors.white,
-      child: const SingleChildScrollView(
+      child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 100,
             ),
-            Hero(
-              tag: 'Flower1',
-              child: Product(
-                name: "House Shape Close",
-                price: "45",
-                image: "images/flower1.png",
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DetailsScreen1()
+                  ),
+                );
+              },
+              child: const Hero(
+                tag: 'flower1',
+                child: Product(
+                  name: "House Shape Close",
+                  price: "45",
+                  image: "images/flower1.png",
+                ),
               ),
             ),
-            Hero(
-              tag: 'Flower2',
-              child: Product(
-                name: "Glass Water",
-                price: "60",
-                image: "images/flower2.png",
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DetailsScreen2()
+                  ),
+                );
+              },
+              child: const Hero(
+                tag: 'flower2',
+                child: Product(
+                  name: "Glass Water",
+                  price: "60",
+                  image: "images/flower2.png",
+                ),
               ),
             ),
           ],
@@ -165,7 +186,7 @@ class HomeScreen extends StatelessWidget {
           ),
 
           Padding(
-            padding: const EdgeInsets.only(right: 16, top: 110),
+            padding: const EdgeInsets.only(right: 70, top: 110,),
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.only(
